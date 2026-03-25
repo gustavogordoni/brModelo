@@ -16,6 +16,24 @@ Estas alterações visam proporcionar maior adequação à metodologia de ensino
 
 ---
 
+## Download
+
+Para baixar a versão mais recente do brModelo, accesse a página de [Releases](https://github.com/gustavogordoni/brModelo/releases) e baixe o arquivo `brModelo.jar` mais recente.
+
+Alternativamente, você pode baixar diretamente o arquivo JAR da versão mais recente:
+
+**[Baixar brModelo.jar](https://github.com/gustavogordoni/brModelo/releases/download/Adaptacoes_metodologia/brModelo.jar)**
+
+## Como executar
+
+Após baixar o arquivo `brModelo.jar`, execute-o com o Java:
+
+```bash
+java -jar brModelo.jar
+```
+
+---
+
 ### Lista de implementações futuras
 
 - [ ] Definir restrição de participação e generalização na hierarquia: (T, D), (T, S), (P, D), (P, S).
