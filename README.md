@@ -19,7 +19,7 @@ Estas alterações visam proporcionar maior adequação à metodologia de ensino
 ### Lista de implementações futuras
 
 - [ ] Definir restrição de participação e generalização na hierarquia: (T, D), (T, S), (P, D), (P, S).
-- [ ] Implementar representação de agregação (todo-parte)
+- [ ] Implementar representação de agregação
 - [ ] Outras adaptações conforme necessidade da metodologia
 
 ---
