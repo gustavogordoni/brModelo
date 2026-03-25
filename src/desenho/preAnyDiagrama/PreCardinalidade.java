@@ -94,7 +94,7 @@ public class PreCardinalidade extends FormaTextoBase {
     // <editor-fold defaultstate="collapsed" desc="Tratamento da cardinalidade">
     public enum TiposCard {
 
-        C11, C01, C1N, C0N
+        C11, C01, C1N, C0N, C1, CN
     }
     private TiposCard Card = TiposCard.C0N;
 
@@ -135,6 +135,12 @@ public class PreCardinalidade extends FormaTextoBase {
             case C0N:
                 res = "(0,n)";
                 break;
+            case C1:
+                res = "1";
+                break;
+            case CN:
+                res = "n";
+                break;
         }
         return res;
     }
@@ -157,6 +163,12 @@ public class PreCardinalidade extends FormaTextoBase {
                 break;
             case C0N:
                 res = "(0,n)";
+                break;
+            case C1:
+                res = "1";
+                break;
+            case CN:
+                res = "n";
                 break;
         }
         return res;

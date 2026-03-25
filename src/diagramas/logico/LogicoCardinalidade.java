@@ -43,7 +43,7 @@ public class LogicoCardinalidade  extends PreCardinalidade {
 
         //res.add(InspectorProperty.PropertyFactorySeparador("mer"));
         ArrayList<String> strCards = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < TiposCard.values().length; i++) {
             strCards.add(CardToString(IntToCard(i)));
         }
         res.add(InspectorProperty.PropertyFactoryMenu("cardinalidade.card", "setCard", CardToInt(), strCards));

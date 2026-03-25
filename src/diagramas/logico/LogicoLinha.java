@@ -312,14 +312,14 @@ public class LogicoLinha extends SuperLinha {
     }
 
     public void AlterCard(LogicoCardinalidade aThis) {
-        if (aThis.getCard() == TiposCard.C01 || aThis.getCard() == TiposCard.C11) {
+        if (aThis.getCard() == TiposCard.C01 || aThis.getCard() == TiposCard.C11 || aThis.getCard() == TiposCard.C1) {
             return;
         }
         LogicoCardinalidade card = (aThis == getCardA() ? getCardB() : getCardA());
         if (card.getCard() == TiposCard.C0N) {
             card.setCard(TiposCard.C01);
-        } else if (card.getCard() == TiposCard.C1N) {
-            card.setCard(TiposCard.C11);
+        } else if (card.getCard() == TiposCard.C1N || card.getCard() == TiposCard.CN) {
+            card.setCard(TiposCard.C1);
         }
         ajusteSeta();
     }
