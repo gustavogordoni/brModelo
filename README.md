@@ -10,9 +10,13 @@ Estas alterações visam proporcionar maior adequação à metodologia de ensino
    - Adição de novos tipos de cardinalidade: C1 (um) e CN (muitos)
    - Estes novos tipos permitem uma forma de representação das cardinalidades sem necessariamente utilizar do padrão de mínimo e máximo
 
+<div align="center"><img src="cardinalidade.png" width="35%" /></div>
+
 2. **Alteração da representação do atributo multivalorado**
    - Implementação de atributo multivalorado com representação visual (círculo interno)
    - Ajuste para melhor interação com atributos multivalorados
+
+<div align="center"><img src="multivalorado.png" width="25%" /></div>
 
 ---
 
