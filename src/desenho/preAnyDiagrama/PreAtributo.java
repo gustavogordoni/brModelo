@@ -255,6 +255,17 @@ public class PreAtributo extends FormaNaoRetangularBase {
         } else {
             g.draw(reg);
         }
+        if (isMultivalorado()) {
+            float margin = getHeight() * 0.22f;
+            float innerSize = getHeight() - 1 - margin * 2;
+            Shape inner;
+            if (getDirecaoLigacao() == Direcao.Left) {
+                inner = new Ellipse2D.Float(getLeft() + margin, getTop() + margin, innerSize, innerSize);
+            } else {
+                inner = new Ellipse2D.Float(getLeft() + getWidth() - getHeight() + margin, getTop() + margin, innerSize, innerSize);
+            }
+            g.draw(inner);
+        }
         if (isOpcional()) {
             g.setStroke(bkps);
         }
@@ -422,5 +433,9 @@ public class PreAtributo extends FormaNaoRetangularBase {
 
     public String getTextoToDraw() {
         return super.getTexto();
+    }
+
+    public boolean isMultivalorado() {
+        return false;
     }
 }

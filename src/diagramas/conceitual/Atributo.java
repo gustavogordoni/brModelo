@@ -242,9 +242,7 @@ public class Atributo extends PreAtributo {
         res.add(InspectorProperty.PropertyFactoryApenasLeituraSN("atributo.composto", isAtributoComposto()));
 
         res.add(InspectorProperty.PropertyFactorySN("atributo.multivalorado", "setMultivalorado",
-                isMultivalorado()).AddCondicaoForTrue(new String[]{"setCardMinFromString", "setCardMaxFromString"}).AddCondicaoForFalse(new String[]{"setOpcional"}));
-        res.add(InspectorProperty.PropertyFactoryTexto("atributo.cardinalidademinima", "setCardMinFromString", getCardMinFromString()));
-        res.add(InspectorProperty.PropertyFactoryTexto("atributo.cardinalidademaxima", "setCardMaxFromString", getCardMaxFromString()));
+                isMultivalorado()).AddCondicaoForFalse(new String[]{"setOpcional"}));
 
         res.add(InspectorProperty.PropertyFactoryTexto("atributo.tipoatributo", "setTipoAtributo", getTipoAtributo()));
         res.add(InspectorProperty.PropertyFactoryCommand(nomeComandos.cmdDoAnyThing.name(), "entidade.orgattr").setTag(CONST_DO_ORGATTR));
@@ -393,7 +391,7 @@ public class Atributo extends PreAtributo {
 
     @Override
     public String getTextoToDraw() {
-        return super.getTexto() + (isMultivalorado() ? " (" + getCardMinFromString() + ", " + getCardMaxFromString() + ")" : "");
+        return super.getTexto();
     }
 
     @Override
