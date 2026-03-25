@@ -28,3 +28,22 @@ O assunto é relevante para a comunidade que atua na área de banco de dados rel
 ## Copie, altere, publique.
 
 ## Fonte em JAVA 8.
+
+---
+
+## Alterações e Implementações para Adequação à Metodologia do Professor
+
+Este fork contém modificações e implementações realizadas para adequar o brModelo à metodologia utilizada pelo professor da faculdade.
+
+### Alterações implementadas:
+
+1. **Cardinalidade (Commit 1)**
+   - Adição de novos tipos de cardinalidade: C1 (um) e CN (muitos)
+   - Estes novos tipos permitem maior flexibilidade na modelagem conceitual
+
+2. **Multivalorado (Commit 2)**
+   - Implementação de atributo multivalorado com representação visual (círculo interno)
+   - Ajuste no Inspector para melhor interação com atributos multivalorados
+
+### Objetivos
+Estas alterações visam proporcionar maior适配 à metodologia de ensino de modelagem de banco de dados utilizada em sala de aula, permitindo representações mais precisas conforme a abordagem do professor.
