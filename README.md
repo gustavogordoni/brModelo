@@ -31,7 +31,7 @@ Para baixar a versão mais recente do brModelo, accesse a página de [Releases](
 
 Alternativamente, você pode baixar diretamente o arquivo JAR da versão mais recente:
 
-**[Baixar brModelo.jar](https://github.com/gustavogordoni/brModelo/releases/download/Adaptacoes_metodologia/brModelo.jar)**
+**[Baixar brModelo.jar](https://github.com/gustavogordoni/brModelo/releases/download/especializa%C3%A7%C3%A3o/brModelo.jar)**
 
 ## Como executar
 
