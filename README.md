@@ -21,8 +21,7 @@ Estas alterações visam proporcionar maior adequação à metodologia de ensino
 3. **Implementação de especialização com texto arrastável**
    - Representação do tipo de especialização: (T,D), (T,S), (P,D), (P,S)
    - Texto separado do triângulo, permitindo arrastar e redimensionar
-   - Tamanho automático baseado no conteúdo do texto
-   - Movimento manual opcional via Inspector
+<div align="center"><img src="especializacao.png" width="25%" /></div>
 
 ---
 
