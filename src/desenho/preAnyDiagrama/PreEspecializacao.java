@@ -16,6 +16,7 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Shape;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -28,6 +29,13 @@ import util.Constantes;
 public class PreEspecializacao extends FormaTriangular {
 
     private static final long serialVersionUID = 4701897775925018386L;
+
+    public enum TipoEspecializacao {
+        TD, // Total Disjunta
+        TS, // Total Sobreposição
+        PD, // Parcial Disjunta
+        PS  // Parcial Sobreposição
+    }
 
     public PreEspecializacao(Diagrama modelo) {
         super(modelo);
@@ -88,6 +96,37 @@ public class PreEspecializacao extends FormaTriangular {
                 return;
             }
         }
+    }
+
+    private boolean MovimentacaoManual = false;
+
+    public boolean isMovimentacaoManual() {
+        return MovimentacaoManual;
+    }
+
+    public void setMovimentacaoManual(boolean MovimentacaoManual) {
+        if (this.MovimentacaoManual != MovimentacaoManual) {
+            this.MovimentacaoManual = MovimentacaoManual;
+        }
+    }
+
+    private boolean TamanhoAutmatico = true;
+
+    public boolean isTamanhoAutmatico() {
+        return TamanhoAutmatico;
+    }
+
+    public void setTamanhoAutmatico(boolean TamanhoAutmatico) {
+        if (this.TamanhoAutmatico != TamanhoAutmatico) {
+            this.TamanhoAutmatico = TamanhoAutmatico;
+            InvalidateArea();
+        }
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        super.mouseDragged(e);
+        MovimentacaoManual = true;
     }
 
     @Override
@@ -159,16 +198,68 @@ public class PreEspecializacao extends FormaTriangular {
         return false;
     }
     
-    private boolean parcial = false;
+    private TipoEspecializacao tipoEsp = TipoEspecializacao.TD;
     protected boolean paintParcial = false;
 
+    public TipoEspecializacao getTipoEsp() {
+        return tipoEsp;
+    }
+
+    public void setTipoEsp(TipoEspecializacao tipoEsp) {
+        this.tipoEsp = tipoEsp;
+        InvalidateArea();
+    }
+
+    public void setTipoEsp(int tipoInt) {
+        try {
+            setTipoEsp(TipoEspecializacao.values()[tipoInt]);
+        } catch (Exception e) {
+            setTipoEsp(TipoEspecializacao.TD);
+        }
+    }
+
+    // Métodos legados para compatibilidade (parcial = PD ou PS)
     public boolean isParcial() {
-        return parcial;
+        return tipoEsp == TipoEspecializacao.PD || tipoEsp == TipoEspecializacao.PS;
     }
 
     public void setParcial(boolean parcial) {
-        this.parcial = parcial;
-        InvalidateArea();
+        if (parcial) {            
+            if (!isParcial()) {
+                setTipoEsp(TipoEspecializacao.PD);
+            }
+        } else {            
+            if (isParcial()) {
+                setTipoEsp(tipoEsp == TipoEspecializacao.PS ? TipoEspecializacao.TS : TipoEspecializacao.TD);
+            }
+        }
+    }
+    
+    public String getTipoEspSigla() {
+        return tipoEsp.name();
+    }
+
+    // Método auxiliar para obter texto descritivo a partir de um TipoEspecializacao
+    public static String getTipoEspDescricao(TipoEspecializacao tipo) {
+        if (tipo == null) {
+            return "(T,D)";
+        }
+        switch (tipo) {
+            case TD:
+                return "(T,D)";
+            case TS:
+                return "(T,S)";
+            case PD:
+                return "(P,D)";
+            case PS:
+                return "(P,S)";
+            default:
+                return "(T,D)";
+        }
+    }
+    
+    public String getTipoEspDescricao() {
+        return getTipoEspDescricao(tipoEsp);
     }
     
     /**
@@ -205,7 +296,7 @@ public class PreEspecializacao extends FormaTriangular {
         me.appendChild(util.XMLGenerate.ValorRefFormElementar(doc, "Ocupado02", ocupados[1] == null ? null : ocupados[1].getEm()));
         me.appendChild(util.XMLGenerate.ValorRefFormElementar(doc, "Ocupado03", ocupados[2] == null ? null : ocupados[2].getEm()));
         
-        me.appendChild(util.XMLGenerate.ValorBoolean(doc, "Parcial", isParcial()));
+        me.appendChild(util.XMLGenerate.ValorInteger(doc, "TipoEspecializacao", tipoEsp.ordinal()));
     }
 
     @Override
@@ -214,8 +305,14 @@ public class PreEspecializacao extends FormaTriangular {
             return false;
         }
         
-        setParcial(util.XMLGenerate.getValorBooleanFrom(me, "Parcial"));
-        
+        int tipoEspInt = util.XMLGenerate.getValorIntegerFrom(me, "TipoEspecializacao");
+        if (tipoEspInt != -1) {
+            setTipoEsp(tipoEspInt);
+        } else {            
+            boolean parcial = util.XMLGenerate.getValorBooleanFrom(me, "Parcial");
+            setParcial(parcial);
+        }
+
         int l = util.XMLGenerate.getValorIntegerFrom(me, "Direcao");
         if (l != -1) {
             setDirecaoFromInspector(l);
@@ -266,8 +363,14 @@ public class PreEspecializacao extends FormaTriangular {
     }
 
     protected void PaintPDeParcial(Graphics2D g, int x, int y) {
-        if (paintParcial && isParcial()) {
-            g.drawString("p", x, y);
+        if (paintParcial) {
+            String texto = getTipoEspDescricao();
+            g.drawString(texto, x, y);
         }
+    }
+
+    @Override
+    public boolean isAlinhavel() {
+        return true;
     }
 }

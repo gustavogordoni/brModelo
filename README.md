@@ -18,6 +18,12 @@ Estas alterações visam proporcionar maior adequação à metodologia de ensino
 
 <div align="center"><img src="multivalorado.png" width="25%" /></div>
 
+3. **Implementação de especialização com texto arrastável**
+   - Representação do tipo de especialização: (T,D), (T,S), (P,D), (P,S)
+   - Texto separado do triângulo, permitindo arrastar e redimensionar
+   - Tamanho automático baseado no conteúdo do texto
+   - Movimento manual opcional via Inspector
+
 ---
 
 ## Download
@@ -40,7 +46,7 @@ java -jar brModelo.jar
 
 ### Lista de implementações futuras
 
-- [ ] Definir restrição de participação e generalização na hierarquia: (T, D), (T, S), (P, D), (P, S).
+- [x] Definir restrição de participação e generalização na hierarquia: (T, D), (T, S), (P, D), (P, S).
 - [ ] Implementar representação de agregação
 - [ ] Outras adaptações conforme necessidade da metodologia
 
