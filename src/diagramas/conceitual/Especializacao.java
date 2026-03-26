@@ -114,6 +114,23 @@ public class Especializacao extends PreEspecializacao {
         super.DoPaint(g);
         AtualizaTextoEspecializacao();
     }
+
+    @Override
+    public boolean AskToDelete() {
+        if (textoEsp != null) {
+            getMaster().Remove(textoEsp, false);
+        }
+        return super.AskToDelete();
+    }
+
+    @Override
+    public boolean Destroy() {
+        if (textoEsp != null) {
+            textoEsp.setCanBeDeleted(true);
+            getMaster().Remove(textoEsp, false);
+        }
+        return super.Destroy();
+    }
     
 //
 //    public void setParcial(boolean Parcial) {
