@@ -46,7 +46,6 @@ java -jar brModelo.jar
 ### Lista de implementações futuras
 
 - [x] Definir restrição de participação e generalização na hierarquia: (T, D), (T, S), (P, D), (P, S).
-- [ ] Implementar representação de agregação
 - [ ] Outras adaptações conforme necessidade da metodologia
 
 ---
